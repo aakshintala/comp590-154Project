@@ -39,9 +39,9 @@ class System {
 
     uint64_t load_elf(const char* filename);
 
-    list<pair<uint64_t, pair<int, bool> > > r_queue;
-    list<int> resp_queue;
-    set<uint64_t> snoop_queue;
+    std::list<std::pair<uint64_t, std::pair<int,bool>> > r_queue;
+    std::list<int> resp_queue;
+    std::set<uint64_t> snoop_queue;
     uint64_t w_addr;
     int w_count;
     std::map<uint64_t, std::pair<uint64_t, int> > addr_to_tag;
@@ -49,7 +49,7 @@ class System {
     void dram_read_complete(unsigned id, uint64_t address, uint64_t clock_cycle);
     void dram_write_complete(unsigned id, uint64_t address, uint64_t clock_cycle);
 
-    bitset<GIGA/PAGE_SIZE> phys_page_used;
+    std::bitset<GIGA/PAGE_SIZE> phys_page_used;
     bool use_virtual_memory;
     uint64_t get_phys_page();
     uint64_t get_pte(uint64_t base_addr, int vpn, bool isleaf, bool& allocated);
