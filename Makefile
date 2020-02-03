@@ -1,6 +1,6 @@
 .PHONY: all run clean submit
 
-RUNELF=test/test.o
+RUNELF=../test/test.o
 
 TRACE?=--trace
 HAVETLB=n
