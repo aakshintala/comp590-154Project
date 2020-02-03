@@ -1,8 +1,8 @@
-ARCH=riscv64-unknown-elf-
+ARCH=riscv64-unknown-linux-gnu-
 CC=$(ARCH)gcc
 LD=$(ARCH)ld
 OBJDUMP=$(ARCH)objdump
-CFLAGS=-march=rv64im -O0 -Wno-implicit-int
+CFLAGS=-march=rv64im -mabi=lp64 -O0 -Wno-implicit-int
 STRIP=$(ARCH)strip
 
 OBJECT_FILES=test
@@ -17,4 +17,4 @@ clean:
 %: %.c
 	$(CC) $(CFLAGS) -c $<
 	$(LD) -o $@ -Tlinker.script $@.o
-	$(OBJDUMP) -S $@ > $@.s
+# 	$(OBJDUMP) -S $@ > $@.s

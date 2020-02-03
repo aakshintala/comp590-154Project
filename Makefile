@@ -1,6 +1,6 @@
 .PHONY: all run clean submit
 
-RUNELF=/shared/cse502/tests/wp1/prog1.o
+RUNELF=test/test.o
 
 TRACE?=--trace
 HAVETLB=n
@@ -13,18 +13,18 @@ all: obj_dir/Vtop
 obj_dir/Vtop: obj_dir/Vtop.mk
 	$(MAKE) -j5 -C obj_dir/ -f Vtop.mk CXX="ccache g++"
 
-obj_dir/Vtop.mk: $(VFILES) $(CFILES) 
+obj_dir/Vtop.mk: $(VFILES) $(CFILES)
 	verilator -Wall -Wno-LITENDIAN -Wno-lint -O3 $(TRACE) --no-skip-identical --cc top.sv \
-	--exe $(CFILES) /shared/cse502/DRAMSim2/libdramsim.so \
-	-CFLAGS -I/shared/cse502 -CFLAGS -std=c++11 -CFLAGS -g3 \
-	-LDFLAGS -Wl,-rpath=/shared/cse502/DRAMSim2 \
+	--exe $(CFILES) /opt/DRAMSim2/libdramsim.so \
+	-CFLAGS -I/opt -CFLAGS -std=c++11 -CFLAGS -g3 \
+	-LDFLAGS -Wl,-rpath=/opt/DRAMSim2 \
 	-LDFLAGS -lncurses -LDFLAGS -lelf -LDFLAGS -lrt
 
 run: obj_dir/Vtop
 	cd obj_dir/ && env HAVETLB=$(HAVETLB) ./Vtop $(RUNELF)
 
 clean:
-	rm -rf obj_dir/ dramsim2/results trace.vcd core 
+	rm -rf obj_dir/ dramsim2/results trace.vcd core
 
 SUBMITTO=/submit
 SUBMIT_POINTS=-50
