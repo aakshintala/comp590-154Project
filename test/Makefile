@@ -15,9 +15,11 @@ clean:
 	rm -f $(OBJECT_FILES) $(patsubst %,%.o,$(OBJECT_FILES)) $(patsubst %,%.s,$(OBJECT_FILES))
 
 prog5: $(wildcard sjeng/*.c)
-	$(CC) $(CFLAGS) --static -o $@ $^
-	$(OBJDUMP) -S $@ > $@.s
+	$(CC) $(CFLAGS) -o $@ $^
+	$(LD) -o $@ -Tlinker.script $@.o
+# 	$(OBJDUMP) -S $@ > $@.s
 
 %: %.c
-	$(CC) $(CFLAGS) --static -o $@ $<
-	$(OBJDUMP) -S $@ > $@.s
+	$(CC) $(CFLAGS) -c $<
+	$(LD) -o $@ -Tlinker.script $@.o
+# 	$(OBJDUMP) -S $@ > $@.s
