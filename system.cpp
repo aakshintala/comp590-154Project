@@ -108,7 +108,7 @@ void System::tick(int clk) {
         return;
     }
 
-    dramsim->update();    
+    dramsim->update();
 
     if (top->m_axi_arvalid) {
         uint64_t xfer_addr = top->m_axi_araddr & ~0x3fULL;

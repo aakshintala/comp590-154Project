@@ -61,7 +61,7 @@ class System {
       // hack: false if /any/ memory channel can't accept transaction
       return dramsim->willAcceptTransaction();
     }
-    
+
 public:
     static System* sys;
     uint64_t max_elf_addr;

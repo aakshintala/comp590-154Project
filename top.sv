@@ -60,6 +60,15 @@ module top
 
   logic [63:0] pc;
 
+  // Instantiate your processor core and cache here.
+  // You will probably need to connect the core and the cache, and connect
+  // the axi wires above as needed (these provide access to memory and other
+  // things.). Refer to the AXI4 manual here:
+  // https://static.docs.arm.com/ihi0022/e/IHI0022E_amba_axi_and_ace_protocol_spec.pdf
+
+  // Core #(...) core(all the signals to pass);
+  // Cache #(...) cache(all the signals to pass);
+
   always_ff @ (posedge clk)
     if (reset) begin
       pc <= entry;
